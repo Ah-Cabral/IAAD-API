@@ -1,7 +1,11 @@
 var express = require('express');
+var cors = require('cors');
+
 var mysql = require ('mysql');
 var app = express();
-app.use(express.json())
+
+app.use(cors());
+app.use(express.json());
 
 var connection = mysql.createConnection({
     host: 'localhost', // O host do banco. Ex: localhost
@@ -29,12 +33,12 @@ app.post('/airport-add', function(req,res){
         if(!!error){
             res.send(error.sqlMessage);
         }else{
-            console.log('Deu bom')
             res.send(rows);
         }
     });
 
 });
+
 
 app.get('/airport-list', function(req,res){
 
