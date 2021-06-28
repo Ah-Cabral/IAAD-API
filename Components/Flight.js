@@ -55,7 +55,7 @@ app.get('/flight-list', function(req,res){
 app.put('/flight-update', function(req,res){
     const {Numero_voo, Companhia_aerea, Dias_da_semana} = req.body;
 
-    connection.query(`UPDATE aeroporto SET Companhia_aerea = '${Companhia_aerea}', Dias_da_semana = '${Dias_da_semana}' WHERE Numero_voo = '${Numero_voo}'`, function(error, rows){
+    connection.query(`UPDATE voo SET Companhia_aerea = '${Companhia_aerea}', Dias_da_semana = '${Dias_da_semana}' WHERE Numero_voo = '${Numero_voo}'`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         } else {
@@ -67,14 +67,13 @@ app.put('/flight-update', function(req,res){
 
 app.delete('/flight-delete', function(req,res){
     const {Numero_voo} = req.body
-    connection.query(`DELETE FROM aeroporto WHERE Numero_voo = ${Numero_voo}`, function(error, rows){
+    connection.query(`DELETE FROM voo WHERE Numero_voo = ${Numero_voo}`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         } else {
             res.send(rows);
         }
     });
-
 });
 
 app.listen(1337);
