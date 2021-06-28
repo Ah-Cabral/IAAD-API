@@ -1,13 +1,13 @@
-var express = require('express');
-var cors = require('cors');
+const express = require('express');
+const cors = require('cors');
 
-var mysql = require ('mysql');
-var router = express.Router();
+const mysql = require ('mysql');
+const router = express.Router();
 
 router.use(cors());
 router.use(express.json());
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host: 'localhost', // O host do banco. Ex: localhost
     user: 'root', // Um usuário do banco. Ex: user 
     port: 3306,
