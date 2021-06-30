@@ -25,7 +25,7 @@ connection.connect(function(error){
 
 //Métodos para integração Tarifa
 
-router.post('/flight-add', function(req,res){
+router.post('/rate-add', function(req,res){
     //Criação Das Variáveis:
     const {Numero_voo, Codigo_tarifa, Quantidade, Restricoes} = req.body;
 
@@ -39,7 +39,7 @@ router.post('/flight-add', function(req,res){
 
 });
 
-router.get('/flight-list', function(req,res){
+router.get('/rate-list', function(req,res){
 
     connection.query("SELECT * FROM tarifa", function(error, rows){
         if(!!error){
@@ -51,7 +51,7 @@ router.get('/flight-list', function(req,res){
 
 });
 
-router.put('/flight-update', function(req,res){
+router.put('/rate-update', function(req,res){
     const {Numero_voo, Codigo_tarifa, Quantidade, Restricoes} = req.body;
 
     connection.query(`UPDATE tarifa SET Codigo_tarifa = '${Codigo_tarifa}', Quantidade = '${Quantidade}', Restricoes = '${Restricoes}', WHERE Numero_voo = '${Numero_voo}' AND Codigo_tarifa = '${Codigo_tarifa}'`, function(error, rows){
@@ -64,9 +64,9 @@ router.put('/flight-update', function(req,res){
 
 });
 
-router.delete('/flight-delete', function(req,res){
+router.delete('/rate-delete', function(req,res){
     const {Numero_voo, Codigo_tarifa} = req.body
-    
+
     connection.query(`DELETE FROM tarifa WHERE Numero_voo = '${Numero_voo}' AND Codigo_tarifa = '${Codigo_tarifa}`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
