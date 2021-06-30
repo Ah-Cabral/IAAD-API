@@ -66,6 +66,7 @@ router.put('/flight-update', function(req,res){
 
 router.delete('/flight-delete', function(req,res){
     const {Numero_voo, Codigo_tarifa} = req.body
+    
     connection.query(`DELETE FROM tarifa WHERE Numero_voo = '${Numero_voo}' AND Codigo_tarifa = '${Codigo_tarifa}`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
