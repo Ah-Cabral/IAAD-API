@@ -19,17 +19,17 @@ connection.connect(function(error){
     if(!!error){
         console.log(error);
     }else{
-        console.log('Your DB Airplane is connected!')
+        console.log('Your DB Rate is connected!')
     }
 });
 
-//Métodos para integração Aeronave
+//Métodos para integração Tarifa
 
-router.post('/airplane-add', function(req,res){
+router.post('/flight-add', function(req,res){
     //Criação Das Variáveis:
-    const {Codigo_aeronave, Numero_total_assentos, Tipo_aeronave} = req.body;
+    const {Numero_voo, Codigo_tarifa, Quantidade, Restricoes} = req.body;
 
-    connection.query(`INSERT INTO aeronave (Codigo_aeronave, Numero_total_assentos, Tipo_aeronave) VALUES ('${Codigo_aeronave}', '${Numero_total_assentos}', '${Tipo_aeronave}')`, function(error, rows){
+    connection.query(`INSERT INTO tarifa (Numero_voo, Codigo_tarifa, Quantidade, Restricoes) VALUES ('${Numero_voo}', '${Codigo_tarifa}', '${Quantidade}', '${Restricoes}')`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         }else{
@@ -39,10 +39,9 @@ router.post('/airplane-add', function(req,res){
 
 });
 
+router.get('/flight-list', function(req,res){
 
-router.get('/airplane-list', function(req,res){
-
-    connection.query("SELECT * FROM aeronave", function(error, rows){
+    connection.query("SELECT * FROM tarifa", function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         } else {
@@ -52,10 +51,10 @@ router.get('/airplane-list', function(req,res){
 
 });
 
-router.put('/airplane-update', function(req,res){
-    const {Codigo_aeronave, Numero_total_assentos, Tipo_aeronave} = req.body;
+router.put('/flight-update', function(req,res){
+    const {Numero_voo, Codigo_tarifa, Quantidade, Restricoes} = req.body;
 
-    connection.query(`UPDATE aeronave SET Numero_total_assentos = '${Numero_total_assentos}', Tipo_aeronave = '${Tipo_aeronave}' WHERE Codigo_aeronave = '${Codigo_aeronave}'`, function(error, rows){
+    connection.query(`UPDATE tarifa SET Codigo_tarifa = '${Codigo_tarifa}', Quantidade = '${Quantidade}', Restricoes = '${Restricoes}', WHERE Numero_voo = '${Numero_voo}' AND Codigo_tarifa = '${Codigo_tarifa}'`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         } else {
@@ -65,9 +64,9 @@ router.put('/airplane-update', function(req,res){
 
 });
 
-router.delete('/airplane-delete', function(req,res){
-    const {Codigo_aeronave} = req.body
-    connection.query(`DELETE FROM aeronave WHERE Codigo_aeronave = ${Codigo_aeronave}`, function(error, rows){
+router.delete('/flight-delete', function(req,res){
+    const {Numero_voo, Codigo_tarifa} = req.body
+    connection.query(`DELETE FROM tarifa WHERE Numero_voo = '${Numero_voo}' AND Codigo_tarifa = '${Codigo_tarifa}`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         } else {
