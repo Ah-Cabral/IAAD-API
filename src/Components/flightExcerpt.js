@@ -19,7 +19,7 @@ connection.connect(function(error){
     if(!!error){
         console.log(error);
     }else{
-        console.log('Your DB is connected!')
+        console.log('Your DB FlightEcxerpt is connected!')
     }
 });
 
@@ -52,9 +52,9 @@ router.get('/flight-excerpt-list', function(req,res){
 });
 
 router.put('/flight-excerpt-update', function(req,res){
-    const {Codigo_aeroporto, Nome, Cidade, Estado} = req.body;
-
-    connection.query(`UPDATE trecho_voo SET Nome = '${Nome}', Cidade = '${Cidade}', Estado = '${Estado}' WHERE Codigo_Aeroporto = '${Codigo_aeroporto}'`, function(error, rows){
+    //Criação Das Variáveis:
+    const {Numero_voo, Numero_trecho, Codigo_aeroporto_partida, Horario_partida_previsto, Codigo_aeroporto_chegada, Horario_chegada_previsto} = req.body;
+    connection.query(`UPDATE trecho_voo SET Codigo_aeroporto_partida = '${Codigo_aeroporto_partida}', Horario_partida_previsto = '${Horario_partida_previsto}', Codigo_aeroporto_chegada, = '${Codigo_aeroporto_chegada}, Horario_chegada_previsto, = '${Horario_chegada_previsto}' WHERE Numero_voo = '${Numero_voo}' AND Numero_trecho=${Numero_trecho}`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         } else {
@@ -65,8 +65,8 @@ router.put('/flight-excerpt-update', function(req,res){
 });
 
 router.delete('/flight-excerpt-delete', function(req,res){
-    const {Codigo_aeroporto} = req.body
-    connection.query(`DELETE FROM trecho_voo WHERE Codigo_aeroporto = ${Codigo_aeroporto}`, function(error, rows){
+    const {Numero_voo, Numero_trecho} = req.body
+    connection.query(`DELETE FROM trecho_voo WHERE Numero_voo = '${Numero_voo}' AND Numero_trecho=${Numero_trecho}`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         } else {

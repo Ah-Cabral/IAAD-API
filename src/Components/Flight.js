@@ -19,7 +19,7 @@ connection.connect(function(error){
     if(!!error){
         console.log(error);
     }else{
-        console.log('Your DB is connected!')
+        console.log('Your DB Flight is connected!')
     }
 });
 
