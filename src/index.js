@@ -11,4 +11,4 @@ app.use(require('./Components/SnippetInstance.js'));
 app.use(require('./Components/AllowLand.js'));
 app.use(require('./Components/SeatReserve.js'));
 
-app.listen(1337);
+app.listen(8080);
