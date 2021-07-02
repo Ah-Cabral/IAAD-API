@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const mysql = require ('mysql');
+
+const mysql = require ('mysql2');
 const router = express.Router();
 
 router.use(cors());
@@ -11,7 +12,7 @@ const connection = mysql.createConnection({
     user: 'root', // Um usuário do banco. Ex: user 
     port: 3306,
     password: 'password', // A senha do usuário. Ex: user123
-    database: 'compania_aereateste1' // A base de dados a qual a aplicação irá se conectar, deve ser a mesma onde foi executado o Código 1. Ex: node_mysql
+    database: 'compania_aerea' // A base de dados a qual a aplicação irá se conectar, deve ser a mesma onde foi executado o Código 1. Ex: node_mysql
 });
 
 connection.connect(function(error){
