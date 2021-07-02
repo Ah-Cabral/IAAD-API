@@ -54,7 +54,7 @@ router.get('/rate-list', function(req,res){
 router.put('/rate-update', function(req,res){
     const {Numero_voo, Codigo_tarifa, Quantidade, Restricoes} = req.body;
 
-    connection.query(`UPDATE tarifa SET Codigo_tarifa = '${Codigo_tarifa}', Quantidade = '${Quantidade}', Restricoes = '${Restricoes}', WHERE Numero_voo = '${Numero_voo}' AND Codigo_tarifa = '${Codigo_tarifa}'`, function(error, rows){
+    connection.query(`UPDATE tarifa SET Quantidade = '${Quantidade}', Restricoes = '${Restricoes}', WHERE Numero_voo = '${Numero_voo}' AND Codigo_tarifa = '${Codigo_tarifa}'`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         } else {
