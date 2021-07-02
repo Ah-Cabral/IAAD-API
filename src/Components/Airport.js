@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-
 const mysql = require ('mysql');
 const router = express.Router();
 
