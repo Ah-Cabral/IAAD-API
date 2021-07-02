@@ -8,6 +8,6 @@ app.use(require('./Components/FlightExcerpt.js'));
 app.use(require('./Components/Flight.js'));
 app.use(require('./Components/Rate.js'));
 app.use(require('./Components/SnippetInstance.js'));
-
+app.use(require('./Components/AllowLand.js'))
 
 app.listen(1337);
