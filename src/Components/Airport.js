@@ -66,7 +66,7 @@ router.put('/airport-update', function(req,res){
 
 router.delete('/airport-delete', function(req,res){
     const {Codigo_aeroporto} = req.body
-    connection.query(`DELETE FROM aeroporto WHERE Codigo_aeroporto = ${Codigo_aeroporto}`, function(error, rows){
+    connection.query(`DELETE FROM aeroporto WHERE Codigo_aeroporto = '${Codigo_aeroporto}'`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         } else {
