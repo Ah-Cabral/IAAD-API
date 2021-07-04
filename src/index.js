@@ -7,4 +7,4 @@ app.use(require('./Components/Airport.js'));
 app.use(require('./Components/Flight.js'));
 app.use(require('./Components/Rate.js'));
 
-app.listen(8080);
+app.listen(3306);
