@@ -67,7 +67,7 @@ router.put('/rate-update', function(req,res){
 router.delete('/rate-delete', function(req,res){
     const {Numero_voo, Codigo_tarifa} = req.body
 
-    connection.query(`DELETE FROM tarifa WHERE Numero_voo = '${Numero_voo}' AND Codigo_tarifa = '${Codigo_tarifa}`, function(error, rows){
+    connection.query(`DELETE FROM tarifa WHERE Numero_voo = '${Numero_voo}' AND Codigo_tarifa = '${Codigo_tarifa}'`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         } else {
