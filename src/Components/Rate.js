@@ -29,7 +29,7 @@ router.post('/rate-add', function(req,res){
     //Criação Das Variáveis:
     const {Numero_voo, Codigo_tarifa, Quantidade, Restricoes} = req.body;
 
-    connection.query(`INSERT INTO tarifa (Numero_voo, Codigo_tarifa, Quantidade, Restricoes) VALUES ('${Numero_voo}', '${Codigo_tarifa}', '${Quantidade}', '${Restricoes}')`, function(error, rows){
+    connection.query(`INSERT INTO tarifa (Numero_voo, Codigo_tarifa, Quantidade, Restricoes) VALUES (${Numero_voo},${Codigo_tarifa},${Quantidade},"${Restricoes}")`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         }else{
@@ -54,7 +54,7 @@ router.get('/rate-list', function(req,res){
 router.put('/rate-update', function(req,res){
     const {Numero_voo, Codigo_tarifa, Quantidade, Restricoes} = req.body;
 
-    connection.query(`UPDATE tarifa SET Quantidade = '${Quantidade}', Restricoes = '${Restricoes}', WHERE Numero_voo = '${Numero_voo}' AND Codigo_tarifa = '${Codigo_tarifa}'`, function(error, rows){
+    connection.query(`UPDATE tarifa SET Quantidade = ${Quantidade}, Restricoes = ${Restricoes}, WHERE Numero_voo = ${Numero_voo} AND Codigo_tarifa = ${Codigo_tarifa}`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         } else {
@@ -67,7 +67,7 @@ router.put('/rate-update', function(req,res){
 router.delete('/rate-delete', function(req,res){
     const {Numero_voo, Codigo_tarifa} = req.body
 
-    connection.query(`DELETE FROM tarifa WHERE Numero_voo = '${Numero_voo}' AND Codigo_tarifa = '${Codigo_tarifa}'`, function(error, rows){
+    connection.query(`DELETE FROM tarifa WHERE Numero_voo = ${Numero_voo} AND Codigo_tarifa = ${Codigo_tarifa}`, function(error, rows){
         if(!!error){
             res.send(error.sqlMessage);
         } else {
